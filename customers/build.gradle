@@ -1,4 +1,0 @@
-group 'org.katta.labs'
-version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
