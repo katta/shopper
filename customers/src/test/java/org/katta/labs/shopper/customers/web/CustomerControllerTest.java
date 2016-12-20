@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class CustomerControllerTest {
 
+    @SuppressWarnings("SpringJavaAutowiredMembersInspection")
     @Autowired
     private MockMvc mvc;
 
