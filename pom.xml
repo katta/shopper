@@ -84,14 +84,19 @@
                     <version>0.4.11</version>
                     <configuration>
                         <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                        <dockerDirectory>${project.basedir}</dockerDirectory>
-                        <resources>
-                            <resource>
-                                <targetPath>/</targetPath>
-                                <directory>${project.build.directory}</directory>
-                                <include>${project.build.finalName}.jar</include>
-                            </resource>
-                        </resources>
+                        <baseImage>frolvlad/alpine-oraclejdk8:slim</baseImage>
+                        <volumes>
+                            <volume>/tmp</volume>
+                        </volumes>
+                        <env>
+                            <JAVA_OPTS>""</JAVA_OPTS>
+                        </env>
+                        <entryPoint>[ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/urandom -jar /${project.build.finalName}.jar" ]</entryPoint>
+                        <forceTags>true</forceTags>
+                        <imageTags>
+                            <imageTag>latest</imageTag>
+                            <imageTag>${project.version}</imageTag>
+                        </imageTags>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -110,10 +115,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
