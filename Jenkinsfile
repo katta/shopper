@@ -1,6 +1,9 @@
 node {
   stage('Build') {
-    sh 'mvn clean compile'
+    withMaven {
+      sh 'mvn clean compile'
+    }
+
   }
 
   stage('Publish') {
