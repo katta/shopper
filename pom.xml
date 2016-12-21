@@ -97,6 +97,8 @@
                             <imageTag>latest</imageTag>
                             <imageTag>${project.version}</imageTag>
                         </imageTags>
+                        <useConfigFile>true</useConfigFile>
+                        <registryUrl>https://index.docker.io/v1/</registryUrl>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -119,6 +121,13 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <configuration>
+                    <skipDockerBuild>true</skipDockerBuild>
+                </configuration>
             </plugin>
         </plugins>
     </build>

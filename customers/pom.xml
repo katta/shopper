@@ -27,6 +27,7 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                    <skipDockerBuild>false</skipDockerBuild>
                 </configuration>
             </plugin>
         </plugins>
