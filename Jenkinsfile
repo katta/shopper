@@ -1,4 +1,5 @@
 node {
+  checkout scm
   stage('Build') {
     withMaven {
       sh 'mvn clean compile'
