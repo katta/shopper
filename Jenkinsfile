@@ -12,6 +12,6 @@ node {
     }
 
     stage('Publish') {
-        sh "${mavenHome}/bin/mvn -s settings.xml clean package -DskipTests docker:build -DpushImageTag"
+        sh "${mavenHome}/bin/mvn -X -s settings.xml clean package -DskipTests docker:build -DpushImageTag"
     }
 }
