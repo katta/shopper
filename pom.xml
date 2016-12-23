@@ -98,6 +98,7 @@
                             <imageTag>${project.version}</imageTag>
                         </imageTags>
                         <useConfigFile>true</useConfigFile>
+                        <serverId>docker-hub</serverId>
                         <registryUrl>https://index.docker.io/v1/</registryUrl>
                     </configuration>
                 </plugin>
