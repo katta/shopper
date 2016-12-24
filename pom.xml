@@ -85,6 +85,13 @@
                     <configuration>
                         <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
                         <baseImage>frolvlad/alpine-oraclejdk8:slim</baseImage>
+                        <resources>
+                            <resource>
+                                <targetPath>/</targetPath>
+                                <directory>${project.build.directory}</directory>
+                                <include>${project.build.finalName}.jar</include>
+                            </resource>
+                        </resources>
                         <volumes>
                             <volume>/tmp</volume>
                         </volumes>
