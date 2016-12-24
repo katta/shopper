@@ -1,5 +1,7 @@
 # Spring boot applications with docker and kubernetes
 
+### WIP
+
 This repository demonstrates the complete CI/CD of spring boot applications running as docker containers and deployed on
  to kubernetes cluster.
 
