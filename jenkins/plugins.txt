@@ -1,0 +1,10 @@
+build-timeout
+cloudbees-folder
+credentials-binding
+timestamper
+ws-cleanup
+git
+github-organization-folder
+workflow-aggregator
+pipeline-stage-view
+ssh-slaves
