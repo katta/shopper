@@ -1,5 +1,6 @@
 package org.katta.labs.shopper.customers.domain;
 
+import com.jayway.jsonpath.JsonPath;
 import org.junit.Test;
 
 import static org.hamcrest.core.Is.is;
@@ -11,6 +12,12 @@ public class CustomerTest {
     public void shouldCreateNewCustomer() {
         Customer customer = new Customer("Srivatsa");
         assertThat(customer.getName(), is("Srivatsa"));
+    }
+    
+    @Test
+    public void shouldSerialize() {
+        Customer customer = new Customer("Katta");
+        assertThat(JsonPath.parse(customer.toJson()).read("$.name"), is("Katta"));
     }
 
 }
