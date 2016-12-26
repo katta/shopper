@@ -1,6 +1,6 @@
 package org.katta.labs.shopper.customers.service;
 
-import org.katta.labs.shopper.customers.config.JmsConfig;
+import org.katta.labs.shopper.customers.config.Config;
 import org.katta.labs.shopper.customers.domain.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
@@ -9,16 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerService {
     private JmsTemplate jmsTemplate;
-    private JmsConfig jmsConfig;
+    private Config config;
 
     @Autowired
-    public CustomerService(JmsTemplate jmsTemplate, JmsConfig jmsConfig) {
+    public CustomerService(JmsTemplate jmsTemplate, Config config) {
         this.jmsTemplate = jmsTemplate;
-        this.jmsConfig = jmsConfig;
+        this.config = config;
     }
 
     public String create(Customer customer) {
-        jmsTemplate.convertAndSend(jmsConfig.getQueueName(), customer);
+        jmsTemplate.convertAndSend(config.getQueueName(), customer);
         return customer.getId();
     }
 }

@@ -13,6 +13,13 @@
     <version>1.0-SNAPSHOT</version>
     <name>Shopper - Order Management</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.katta.labs</groupId>
+            <artifactId>jms-core</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -21,6 +28,11 @@
                 <configuration>
                     <skipDockerBuild>false</skipDockerBuild>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
