@@ -21,8 +21,8 @@ items:
           - name: config-volume
             mountPath: /etc/config/customers
           env:
-          - name: JAVA_OPTS
-            value: -cp /etc/config/customers
+          - name: SPRING_CONFIG_LOCATION
+            value: /etc/config/customers/application.properties
         volumes:
         - name: config-volume
           configMap:
@@ -50,8 +50,8 @@ items:
           - name: config-volume
             mountPath: /etc/config/orders
           env:
-          - name: JAVA_OPTS
-            value: -cp /etc/config/orders
+          - name: SPRING_CONFIG_LOCATION
+            value: /etc/config/orders/application.properties
         volumes:
         - name: config-volume
           configMap:
