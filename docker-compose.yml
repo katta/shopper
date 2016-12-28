@@ -3,14 +3,19 @@ services:
   customers:
     image: vatsakatta/customers
     ports:
-     - "8081:8080"
+    - "8081:8080"
     environment:
-     - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+    - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+  orders:
+    image: vatsakatta/orders
+    ports:
+    - "8082:8080"
+    environment:
+    - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
   activemq:
     build: activemq
     ports:
-     - "61616:61616"
-     - "8161:8161"
+    - "8161:8161"
     volumes:
-     - /var/log/activemq
-     - /var/data/activemq
+    - /var/log/activemq
+    - /var/data/activemq

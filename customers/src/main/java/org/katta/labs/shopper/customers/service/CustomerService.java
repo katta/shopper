@@ -18,7 +18,7 @@ public class CustomerService {
     }
 
     public String create(Customer customer) {
-        jmsTemplate.convertAndSend(config.getQueueName(), customer);
+        jmsTemplate.convertAndSend(config.getQueueName(), customer.toJson());
         return customer.getId();
     }
 }
