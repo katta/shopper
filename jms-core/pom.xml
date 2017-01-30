@@ -24,4 +24,16 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>fabric8-maven-plugin</artifactId>
+                <configuration>
+                    <skipBuild>true</skipBuild>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
