@@ -1,17 +1,22 @@
 #!groovy
 node {
-    def mavenHome="${tool 'M3'}"
+    def mvn="${tool 'M3'}/bin/mvn"
     checkout scm
 
     stage('Build') {
-        sh "${mavenHome}/bin/mvn clean test"
+        sh "${mvn} clean test"
     }
 
     stage('Version') {
-        sh "${mavenHome}/bin/mvn versions:set -DnewVersion=1.0.${BUILD_NUMBER}"
+        sh "${mvn} versions:set -DnewVersion=1.0.${BUILD_NUMBER}"
     }
 
     stage('Publish') {
-        sh "${mavenHome}/bin/mvn -X clean package -DskipTests docker:build -DpushImageTag"
+        sh "${mvn} clean install -DskipTests fabric8:build fabric8:push fabric8:resource"
+    }
+
+    stage('Deploy') {
+        sh "kubectl apply -f customers/target/classes/META-INF/fabric8/kubernetes.yml"
+        sh "kubectl apply -f orders/target/classes/META-INF/fabric8/kubernetes.yml"
     }
 }

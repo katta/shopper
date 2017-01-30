@@ -1,0 +1,10 @@
+metadata:
+  name: ${project.artifactId}
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: ${project.artifactId}
+    version: ${project.version}
+  type: NodePort

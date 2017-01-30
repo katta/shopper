@@ -1,0 +1,24 @@
+metadata:
+  name: ${project.artifactId}
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: ${project.artifactId}
+    spec:
+      containers:
+      - name: ${project.artifactId}
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/${project.artifactId}
+        env:
+        - name: SPRING_CONFIG_LOCATION
+          value: /etc/${project.artifactId}/application.properties
+      volumes:
+      - name: config-volume
+        configMap:
+          name: ${project.artifactId}
+          items:
+          - key: application.properties
+            path: application.properties

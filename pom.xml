@@ -91,33 +91,38 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>com.spotify</groupId>
-                    <artifactId>docker-maven-plugin</artifactId>
-                    <version>0.4.11</version>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>fabric8-maven-plugin</artifactId>
+                    <version>3.2.14</version>
                     <configuration>
-                        <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
-                        <baseImage>frolvlad/alpine-oraclejdk8:slim</baseImage>
-                        <resources>
-                            <resource>
-                                <targetPath>/</targetPath>
-                                <directory>${project.build.directory}</directory>
-                                <include>${project.build.finalName}.jar</include>
-                            </resource>
-                        </resources>
-                        <volumes>
-                            <volume>/tmp</volume>
-                        </volumes>
-                        <env>
-                            <JAVA_OPTS>""</JAVA_OPTS>
-                        </env>
-                        <entryPoint>[ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/urandom -jar /${project.build.finalName}.jar" ]</entryPoint>
-                        <forceTags>true</forceTags>
-                        <imageTags>
-                            <imageTag>latest</imageTag>
-                            <imageTag>${project.version}</imageTag>
-                        </imageTags>
-                        <useConfigFile>true</useConfigFile>
-                        <registryUrl>https://index.docker.io/v1/</registryUrl>
+                        <verbose>true</verbose>
+                        <skipBuild>true</skipBuild>
+                        <images>
+                            <image>
+                                <alias>${project.artifactId}</alias>
+                                <name>${docker.image.prefix}/${project.artifactId}</name>
+                                <build>
+                                    <from>frolvlad/alpine-oraclejdk8:slim</from>
+                                    <tags>
+                                        <tag>latest</tag>
+                                        <tag>${project.version}</tag>
+                                    </tags>
+                                    <env>
+                                        <JAVA_OPTS>""</JAVA_OPTS>
+                                    </env>
+                                    <assembly>
+                                        <targetDir>/opt/${project.artifactId}</targetDir>
+                                        <descriptorRef>artifact</descriptorRef>
+                                    </assembly>
+                                    <entryPoint>
+                                        <shell>java  $JAVA_OPTS -Djava.security.egd=file:/dev/urandom -jar /opt/${project.artifactId}/${project.artifactId}-${project.version}.jar</shell>
+                                    </entryPoint>
+                                    <ports>
+                                        <port>8080</port>
+                                    </ports>
+                                </build>
+                            </image>
+                        </images>
                     </configuration>
                 </plugin>
                 <plugin>
