@@ -143,11 +143,8 @@
                 <artifactId>versions-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>com.spotify</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <configuration>
-                    <skipDockerBuild>true</skipDockerBuild>
-                </configuration>
+                <groupId>io.fabric8</groupId>
+                <artifactId>fabric8-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
