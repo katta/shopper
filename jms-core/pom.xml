@@ -31,6 +31,7 @@
                 <artifactId>fabric8-maven-plugin</artifactId>
                 <configuration>
                     <skipBuild>true</skipBuild>
+                    <skipBuildPom>true</skipBuildPom>
                 </configuration>
             </plugin>
         </plugins>
