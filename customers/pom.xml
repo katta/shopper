@@ -31,7 +31,7 @@
                 <groupId>io.fabric8</groupId>
                 <artifactId>fabric8-maven-plugin</artifactId>
                 <configuration>
-                    <skipBuild>false</skipBuild>
+                    <skip>false</skip>
                 </configuration>
             </plugin>
         </plugins>

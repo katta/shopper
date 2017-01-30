@@ -96,7 +96,7 @@
                     <version>3.2.14</version>
                     <configuration>
                         <verbose>true</verbose>
-                        <skipBuild>true</skipBuild>
+                        <skip>true</skip>
                         <images>
                             <image>
                                 <alias>${project.artifactId}</alias>
@@ -145,9 +145,6 @@
             <plugin>
                 <groupId>io.fabric8</groupId>
                 <artifactId>fabric8-maven-plugin</artifactId>
-                <configuration>
-                    <skipBuild>true</skipBuild>
-                </configuration>
             </plugin>
         </plugins>
     </build>
