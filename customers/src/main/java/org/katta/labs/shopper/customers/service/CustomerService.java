@@ -17,4 +17,8 @@ public class CustomerService {
     public String create(Customer customer) {
         return repository.save(customer).getId();
     }
+
+    public Customer get(String customerId) {
+        return repository.findOne(customerId);
+    }
 }

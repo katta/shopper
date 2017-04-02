@@ -18,9 +18,9 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String index() {
-        return "Customers resource";
+    @RequestMapping(method = RequestMethod.GET, path = "/{customerId}")
+    public Customer getById(@PathVariable String customerId) {
+        return customerService.get(customerId);
     }
 
     @RequestMapping(method = RequestMethod.POST)

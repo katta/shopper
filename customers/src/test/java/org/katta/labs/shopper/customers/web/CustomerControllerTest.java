@@ -1,6 +1,9 @@
 package org.katta.labs.shopper.customers.web;
 
+import com.jayway.jsonpath.JsonPath;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.results.ResultMatchers;
 import org.junit.runner.RunWith;
 import org.katta.labs.shopper.customers.domain.Customer;
 import org.katta.labs.shopper.customers.service.CustomerService;
@@ -11,6 +14,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.ResultMatcher;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -30,18 +35,30 @@ public class CustomerControllerTest {
 
     @Autowired
     private MockMvc mvc;
+    private Customer customer;
+    private String customerId;
+
+    @Before
+    public void setUp() throws Exception {
+        customer = new Customer("Katta");
+        customerId = "customer-id";
+    }
 
     @Test
     public void shouldGetCustomer() throws Exception {
-        mvc.perform(get("/customers").accept(MediaType.APPLICATION_JSON))
+        when(customerService.get(customerId)).thenReturn(customer);
+
+        MvcResult result = mvc.perform(get("/customers/{id}", customerId).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Customers resource"));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
+                .andReturn();
+
+        String response = result.getResponse().getContentAsString();
+        assertThat(JsonPath.read(response,"$.name").toString()).isEqualTo(customer.getName());
     }
 
     @Test
     public void shouldCreateCustomer() throws Exception {
-        Customer customer = new Customer("Katta");
-        String customerId = "customer-id";
         when(customerService.create(customer)).thenReturn(customerId);
 
         mvc.perform(post("/customers")
