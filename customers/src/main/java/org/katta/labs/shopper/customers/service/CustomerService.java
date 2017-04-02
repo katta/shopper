@@ -10,7 +10,6 @@ public class CustomerService {
 
     private CustomerRepository repository;
 
-    @Autowired
     public CustomerService(CustomerRepository repository) {
         this.repository = repository;
     }
