@@ -1,13 +1,14 @@
 package org.katta.labs.shopper.customers.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
 
 public class Customer {
     private String name;
+    @Id
     private String id;
 
     private Customer() {
@@ -15,7 +16,6 @@ public class Customer {
 
     public Customer(String name) {
         this.name = name;
-        this.id = UUID.randomUUID().toString();
     }
 
     public String getName() {
