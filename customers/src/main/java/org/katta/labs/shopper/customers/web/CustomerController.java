@@ -5,6 +5,9 @@ import org.katta.labs.shopper.customers.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -22,7 +25,8 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    public String createCustomer(@RequestBody Customer customer) {
-        return customerService.create(customer);
+    public Map<String, String> createCustomer(@RequestBody Customer customer) {
+        String customerId = customerService.create(customer);
+        return Collections.singletonMap("customerId", customerId);
     }
 }

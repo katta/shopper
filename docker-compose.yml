@@ -6,6 +6,7 @@ services:
     - "8081:8080"
     environment:
     - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+    - SPRING_DATA_MONGODB_HOST=mongodb
   orders:
     image: vatsakatta/orders
     ports:
@@ -19,3 +20,7 @@ services:
     volumes:
     - /var/log/activemq
     - /var/data/activemq
+  mongodb:
+    build: mongodb
+    ports:
+    - "27017:27017"
