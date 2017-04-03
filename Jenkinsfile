@@ -8,8 +8,7 @@ node {
     }
 
     stage('Publish') {
-        sh "${mvn} versions:set -DnewVersion=1.0.${BUILD_NUMBER}"
-        sh "${mvn} clean install -DskipTests fabric8:build fabric8:push fabric8:resource"
+        sh "${mvn} clean versions:set -DnewVersion=1.0.${BUILD_NUMBER} install -DskipTests fabric8:build fabric8:push fabric8:resource"
     }
 
     stage('Deploy') {
