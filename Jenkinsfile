@@ -12,6 +12,10 @@ node {
         sh "${mvn} clean install -DskipTests fabric8:build fabric8:push fabric8:resource"
     }
 
+    stage('Migrate') {
+        sh "echo 'Running migrations..'"
+    }
+
     stage('Deploy') {
         sh "kubectl apply -f activemq/kubernetes.yml"
         sh "kubectl apply -f mongodb/kubernetes.yml"
