@@ -23,6 +23,11 @@ public class CustomerController {
         return customerService.get(customerId);
     }
 
+    @RequestMapping(method = RequestMethod.GET, path = "/greeting")
+    public String greeting() {
+        return "Hello";
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Map<String, String> createCustomer(@RequestBody Customer customer) {
