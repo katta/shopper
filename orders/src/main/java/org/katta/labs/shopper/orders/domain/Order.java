@@ -1,5 +1,7 @@
 package org.katta.labs.shopper.orders.domain;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.joda.time.DateTime;
 import org.springframework.data.annotation.Id;
 
@@ -52,5 +54,14 @@ public class Order {
 
     public CustomerView getCustomerView() {
         return customerView;
+    }
+
+    public String toJson() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            return objectMapper.writeValueAsString(this);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException("Error serializing", e);
+        }
     }
 }

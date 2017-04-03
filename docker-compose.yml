@@ -12,6 +12,8 @@ services:
     - "8082:8080"
     environment:
     - ACTIVEMQ_BROKER_URL=tcp://activemq:61616
+    - CUSTOMER_SERVICE_URL=http://customers:8080/customers
+    - SPRING_DATA_MONGODB_HOST=mongodb
   activemq:
     build: activemq
     ports:
