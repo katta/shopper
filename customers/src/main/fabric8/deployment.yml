@@ -15,6 +15,7 @@ spec:
         env:
         - name: SPRING_CONFIG_LOCATION
           value: /etc/${project.artifactId}/application.properties
+        imagePullPolicy: Always
       volumes:
       - name: config-volume
         configMap:

@@ -113,7 +113,7 @@
                         <images>
                             <image>
                                 <alias>${project.artifactId}</alias>
-                                <name>${docker.image.prefix}/${project.artifactId}</name>
+                                <name>${docker.image.prefix}/${project.artifactId}:${project.version}</name>
                                 <build>
                                     <from>frolvlad/alpine-oraclejdk8:slim</from>
                                     <tags>
