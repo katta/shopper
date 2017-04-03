@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: shopper-ingress
+  annotations:
+    ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: shopper.k8s.com
+    http:
+      paths:
+        - path: /customers
+          backend:
+            serviceName: customers-service
+            servicePort: 8080
+        - path: /orders
+          backend:
+            serviceName: orders-service
+            servicePort: 8080
