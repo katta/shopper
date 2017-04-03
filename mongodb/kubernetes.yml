@@ -1,0 +1,32 @@
+kind: List
+apiVersion: v1
+items:
+- kind: Deployment
+  apiVersion: extensions/v1beta1
+  metadata:
+    name: mongodb-deployment
+  spec:
+    replicas: 1
+    template:
+      metadata:
+        labels:
+          app: mongodb
+      spec:
+        containers:
+        - name: mongodb
+          image: vatsakatta/mongodb
+          ports:
+          - name: server
+            containerPort: 27017
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: mongodb-service
+  spec:
+    ports:
+    - name: server
+      port: 27017
+      targetPort: 27017
+    selector:
+      app: mongodb
+    type: NodePort
