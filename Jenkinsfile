@@ -20,9 +20,7 @@ node {
         input message: "Proceed?"
         sh "kubectl apply -f activemq/kubernetes.yml"
         sh "kubectl apply -f mongodb/kubernetes.yml"
-        sh "kubectl apply -f customers/target/classes/META-INF/fabric8/kubernetes/customers-deployment.yml"
-        sh "kubectl apply -f customers/target/classes/META-INF/fabric8/kubernetes/customers-service-svc.yml"
-        sh "kubectl apply -f orders/target/classes/META-INF/fabric8/kubernetes/orders-deployment.yml"
-        sh "kubectl apply -f orders/target/classes/META-INF/fabric8/kubernetes/orders-service-svc.yml"
+        sh "kubectl apply -f customers/target/classes/META-INF/fabric8/kubernetes.yml"
+        sh "kubectl apply -f orders/target/classes/META-INF/fabric8/kubernetes.yml"
     }
 }
