@@ -1,9 +1,8 @@
 # Spring boot applications with docker and kubernetes
 
-### WIP
+This repository demonstrates the complete CI/CD of spring boot applications running as docker containers and deployed on to kubernetes cluster.
 
-This repository demonstrates the complete CI/CD of spring boot applications running as docker containers and deployed on
- to kubernetes cluster.
+> Please note this is work in progress 
 
 ## Prerequisites
 
@@ -27,5 +26,14 @@ This repository demonstrates the complete CI/CD of spring boot applications runn
 
 You are good to go. On successful builds, images gets pushed to your dockerhub account.
 
+### What's done and what's not
+
+- [X] Integrating multiple services
+- [X] Usage of config maps
+- [X] Usage of external services like Database or AMQ
+- [ ] Usage of secrets (Mongodb credentials and AMQ credentials) 
+- [X] Automated deployment on to k8s cluster
+- [X] Accessing services via ingress LB
+- [ ] Demonstrate blue green deployment
 
 
